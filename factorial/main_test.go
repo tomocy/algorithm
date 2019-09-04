@@ -18,3 +18,9 @@ func TestSolve(t *testing.T) {
 		}
 	}
 }
+
+func BenchmarkSolve(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		solve(100)
+	}
+}
