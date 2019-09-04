@@ -26,3 +26,9 @@ func TestSolve(t *testing.T) {
 		}
 	}
 }
+
+func BenchmarkSolution(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		solve([]int{3, 5, 2, 4, 1})
+	}
+}
