@@ -8,7 +8,7 @@ import (
 )
 
 var solutions = map[string]func([]int) []int{
-	"quick": quick,
+	"quick": quick, "selection": selection,
 }
 
 func TestSolve(t *testing.T) {
