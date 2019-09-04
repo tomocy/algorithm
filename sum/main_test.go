@@ -1,10 +1,15 @@
 package main
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/tomocy/algorithm"
 )
+
+var solutions = map[string]func([]int) int{
+	"solve": solve,
+}
 
 func TestSolve(t *testing.T) {
 	tests := []struct {
@@ -15,15 +20,21 @@ func TestSolve(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		actual := solve(test.input)
-		if actual != test.expected {
-			algorithm.Reportln(t, "sum", actual, test.expected)
+		for name, s := range solutions {
+			actual := s(test.input)
+			if actual != test.expected {
+				algorithm.Reportln(t, fmt.Sprintf("sum of %s", name), actual, test.expected)
+			}
 		}
 	}
 }
 
 func BenchmarkSolve(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		solve([]int{0, 1, 2, 3, 4, 5})
+	for name, s := range solutions {
+		b.Run(name, func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
+				s([]int{0, 1, 2, 3, 4, 5})
+			}
+		})
 	}
 }
