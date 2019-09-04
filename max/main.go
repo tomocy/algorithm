@@ -17,3 +17,20 @@ func selection(vs []int) int {
 
 	return max
 }
+
+func recursive(vs []int) int {
+	switch len(vs) {
+	case 0:
+		return 0
+	case 1:
+		return vs[0]
+	default:
+		max := vs[0]
+		alt := recursive(vs[1:])
+		if max < alt {
+			max = alt
+		}
+
+		return max
+	}
+}
