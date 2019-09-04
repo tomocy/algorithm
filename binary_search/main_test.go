@@ -52,3 +52,9 @@ func TestSolve(t *testing.T) {
 		}
 	}
 }
+
+func BenchmarkSolve(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		solve([]int{0, 1, 2, 3, 4, 5}, 4)
+	}
+}
