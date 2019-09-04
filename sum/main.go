@@ -10,3 +10,11 @@ func solve(vs []int) int {
 
 	return sum
 }
+
+func solve2(vs []int) int {
+	if len(vs) <= 0 {
+		return 0
+	}
+
+	return vs[0] + solve2(vs[1:])
+}
