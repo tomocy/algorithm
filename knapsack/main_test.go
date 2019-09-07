@@ -1,7 +1,6 @@
 package main
 
 import (
-	"log"
 	"sort"
 	"testing"
 
@@ -49,7 +48,6 @@ func TestSolve(t *testing.T) {
 					t.Fatalf("unexpected length: got %d, expect %d\n", len(actual), len(test.expected))
 				}
 				sort.Strings(actual)
-				log.Println(actual)
 				for i, expected := range test.expected {
 					if actual[i] != expected {
 						algorithm.Reportln(t, "knapsack", actual[i], expected)
