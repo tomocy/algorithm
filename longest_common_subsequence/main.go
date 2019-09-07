@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 func main() {}
 
 func dynamic(items []string, name string) string {
@@ -7,6 +9,13 @@ func dynamic(items []string, name string) string {
 	var longestItem string
 	for i, item := range items {
 		grid := findCommons(item, name)
+		for i := range item {
+			for j := range name {
+				fmt.Print(grid[i][j])
+			}
+			fmt.Println()
+		}
+		fmt.Println()
 		guessed := grid[len(item)-1][len(name)-1]
 		if i == 0 || longest < guessed {
 			longest = guessed
@@ -22,12 +31,12 @@ func findCommons(item, name string) grid {
 	for i, p := range item {
 		for j, q := range name {
 			var cell int
-			if p == q {
+			if i == j && p == q {
 				cell = grid.cell(i-1, j-1) + 1
 			} else {
 				cell = grid.cell(i-1, j)
-				if left := grid.cell(i, j-1); cell < left {
-					cell = left
+				if top := grid.cell(i, j-1); cell < top {
+					cell = top
 				}
 			}
 

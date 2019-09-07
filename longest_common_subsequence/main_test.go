@@ -26,6 +26,13 @@ func TestSolve(t *testing.T) {
 			},
 			"fish",
 		},
+		{
+			input{
+				[]string{"clues"},
+				"blue",
+			},
+			"clues",
+		},
 	}
 
 	for _, test := range tests {
