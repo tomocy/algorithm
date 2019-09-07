@@ -30,6 +30,15 @@ func TestSolve(t *testing.T) {
 			},
 			[]string{"guiter", "laptop"},
 		},
+		{
+			input{
+				map[string]item{
+					"a": {10, 3}, "b": {3, 1}, "c": {9, 2}, "d": {5, 2}, "e": {6, 1},
+				},
+				6,
+			},
+			[]string{"a", "c", "e"},
+		},
 	}
 
 	for _, test := range tests {
