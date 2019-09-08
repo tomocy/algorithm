@@ -57,26 +57,28 @@ func TestSolve(t *testing.T) {
 		},
 	}
 
-	for _, test := range tests {
-		for name, s := range solutions {
-			t.Run(name, func(t *testing.T) {
+	for name, s := range solutions {
+		t.Run(name, func(t *testing.T) {
+			for _, test := range tests {
 				actual := s(test.input.graph, test.input.start, test.input.finish)
 				if actual != test.expected {
 					algorithm.Reportln(t, "fastest path", actual, test.expected)
 				}
-			})
-		}
+			}
+		})
 	}
 }
 
 func BenchmarkSolve(b *testing.B) {
 	for name, s := range solutions {
 		b.Run(name, func(b *testing.B) {
-			s(map[string]map[string]int{
-				"start": {"a": 6, "b": 2},
-				"a":     {"finish": 1},
-				"b":     {"a": 3, "finish": 5},
-			}, "start", "finish")
+			for i := 0; i < b.N; i++ {
+				s(map[string]map[string]int{
+					"start": {"a": 6, "b": 2},
+					"a":     {"finish": 1},
+					"b":     {"a": 3, "finish": 5},
+				}, "start", "finish")
+			}
 		})
 	}
 }
