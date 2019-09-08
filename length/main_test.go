@@ -3,7 +3,7 @@ package main
 import "testing"
 
 var solutions = map[string]func([]interface{}) int{
-	"builtin": builtin,
+	"builtin": builtin, "recursive": recursive,
 }
 
 func TestSolve(t *testing.T) {
