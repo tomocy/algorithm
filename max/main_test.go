@@ -7,7 +7,7 @@ import (
 )
 
 var solutions = map[string]func([]int) int{
-	"selection": selection, "recursive": recursive,
+	"simple": simple, "recursive": recursive,
 }
 
 func TestSolve(t *testing.T) {
