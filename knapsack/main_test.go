@@ -40,9 +40,9 @@ func TestSolve(t *testing.T) {
 		},
 	}
 
-	for _, test := range tests {
-		for name, s := range solutions {
-			t.Run(name, func(t *testing.T) {
+	for name, s := range solutions {
+		t.Run(name, func(t *testing.T) {
+			for _, test := range tests {
 				actual := s(test.input.items, test.input.limit)
 				if len(actual) != len(test.expected) {
 					t.Fatalf("unexpected length: got %d, expect %d\n", len(actual), len(test.expected))
@@ -53,17 +53,19 @@ func TestSolve(t *testing.T) {
 						algorithm.Reportln(t, "knapsack", actual[i], expected)
 					}
 				}
-			})
-		}
+			}
+		})
 	}
 }
 
 func BenchmarkSolve(b *testing.B) {
 	for name, s := range solutions {
 		b.Run(name, func(b *testing.B) {
-			s(map[string]item{
-				"stereo": {3000, 4}, "laptop": {2000, 3}, "guiter": {1500, 1},
-			}, 4)
+			for i := 0; i < b.N; i++ {
+				s(map[string]item{
+					"stereo": {3000, 4}, "laptop": {2000, 3}, "guiter": {1500, 1},
+				}, 4)
+			}
 		})
 	}
 }

@@ -2,7 +2,7 @@ package main
 
 func main() {}
 
-func selection(vs []int) int {
+func simple(vs []int) int {
 	var max int
 	for i, v := range vs {
 		if i == 0 {

@@ -1,14 +1,11 @@
 package main
 
 import (
-	"fmt"
 	"testing"
-
-	"github.com/tomocy/algorithm"
 )
 
 var solutions = map[string]func([]int) int{
-	"solve": solve, "solve2": solve2,
+	"simple": simple, "recursive": recursive,
 }
 
 func TestSolve(t *testing.T) {
@@ -19,13 +16,15 @@ func TestSolve(t *testing.T) {
 		{[]int{0, 1, 2, 3, 4, 5}, 15},
 	}
 
-	for _, test := range tests {
-		for name, s := range solutions {
-			actual := s(test.input)
-			if actual != test.expected {
-				algorithm.Reportln(t, fmt.Sprintf("sum of %s", name), actual, test.expected)
+	for name, s := range solutions {
+		t.Run(name, func(t *testing.T) {
+			for _, test := range tests {
+				actual := s(test.input)
+				if actual != test.expected {
+					t.Errorf("got %d, expect %d\n", actual, test.expected)
+				}
 			}
-		}
+		})
 	}
 }
 

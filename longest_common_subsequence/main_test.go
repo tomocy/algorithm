@@ -21,10 +21,17 @@ func TestSolve(t *testing.T) {
 	}{
 		{
 			input{
-				[]string{"vista", "fish"},
-				"hish",
+				[]string{"fort", "fish"},
+				"fosh",
 			},
 			"fish",
+		},
+		{
+			input{
+				[]string{"clues"},
+				"blue",
+			},
+			"clues",
 		},
 	}
 
@@ -33,7 +40,7 @@ func TestSolve(t *testing.T) {
 			for _, test := range tests {
 				actual := s(test.input.items, test.input.name)
 				if actual != test.expected {
-					algorithm.Reportln(t, "longest common substring", actual, test.expected)
+					algorithm.Reportln(t, "longest common subsequence", actual, test.expected)
 				}
 			}
 		})
@@ -44,7 +51,7 @@ func BenchmarkSolve(b *testing.B) {
 	for name, s := range solutions {
 		b.Run(name, func(b *testing.B) {
 			for i := 0; i < b.N; i++ {
-				s([]string{"fish", "vista"}, "hish")
+				s([]string{"fort", "fish"}, "fosh")
 			}
 		})
 	}

@@ -7,7 +7,7 @@ import (
 )
 
 var solutions = map[string]func([]int) int{
-	"selection": selection, "recursive": recursive,
+	"simple": simple, "recursive": recursive,
 }
 
 func TestSolve(t *testing.T) {
@@ -18,15 +18,15 @@ func TestSolve(t *testing.T) {
 		{[]int{4, 5, 2, 3, 5, 6, 8}, 8},
 	}
 
-	for _, test := range tests {
-		for name, s := range solutions {
-			t.Run(name, func(t *testing.T) {
+	for name, s := range solutions {
+		t.Run(name, func(t *testing.T) {
+			for _, test := range tests {
 				actual := s(test.input)
 				if actual != test.expected {
 					algorithm.Reportln(t, "max", actual, test.expected)
 				}
-			})
-		}
+			}
+		})
 	}
 }
 

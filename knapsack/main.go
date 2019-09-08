@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func main() {}
 
 func dynamic(items map[string]item, limit float64) []string {
@@ -29,15 +27,6 @@ func dynamic(items map[string]item, limit float64) []string {
 		}
 
 		lastName = name
-	}
-
-	for _, name := range names {
-		fmt.Print(name)
-		row := grid[name]
-		for cost := base; cost <= limit; cost += base {
-			fmt.Print(" ", row[cost])
-		}
-		fmt.Println()
 	}
 
 	return grid.cell(lastName, limit).names
