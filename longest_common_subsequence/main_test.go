@@ -35,22 +35,24 @@ func TestSolve(t *testing.T) {
 		},
 	}
 
-	for _, test := range tests {
-		for name, s := range solutions {
-			t.Run(name, func(t *testing.T) {
+	for name, s := range solutions {
+		t.Run(name, func(t *testing.T) {
+			for _, test := range tests {
 				actual := s(test.input.items, test.input.name)
 				if actual != test.expected {
 					algorithm.Reportln(t, "longest common subsequence", actual, test.expected)
 				}
-			})
-		}
+			}
+		})
 	}
 }
 
 func BenchmarkSolve(b *testing.B) {
 	for name, s := range solutions {
 		b.Run(name, func(b *testing.B) {
-			s([]string{"fort", "fish"}, "fosh")
+			for i := 0; i < b.N; i++ {
+				s([]string{"fort", "fish"}, "fosh")
+			}
 		})
 	}
 }
