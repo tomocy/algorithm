@@ -7,7 +7,7 @@ import (
 )
 
 var solutions = map[string]func([]int) int{
-	"solve": solve, "solve2": solve2,
+	"builtin": builtin, "solve2": solve2,
 }
 
 func TestSolve(t *testing.T) {
