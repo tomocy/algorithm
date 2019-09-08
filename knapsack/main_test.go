@@ -5,7 +5,9 @@ import (
 	"testing"
 )
 
-var solutions = map[string]func(map[string]*item, float64) []string{}
+var solutions = map[string]func(map[string]*item, float64) []string{
+	"dynamic": dynamic,
+}
 
 func TestSolve(t *testing.T) {
 	type input struct {
@@ -20,7 +22,7 @@ func TestSolve(t *testing.T) {
 			"a": {"a", 3000, 4}, "b": {"b", 2000, 3}, "c": {"c", 1500, 1},
 		}, 4}, []string{"b", "c"}},
 		{input{map[string]*item{
-			"a": {"a", 10, 3}, "b": {"c", 3, 1}, "c": {"c", 9, 2}, "d": {"d", 5, 2}, "e": {"e", 6, 1},
+			"a": {"a", 10, 3}, "b": {"b", 3, 1}, "c": {"c", 9, 2}, "d": {"d", 5, 2}, "e": {"e", 6, 1},
 		}, 6}, []string{"a", "c", "e"}},
 	}
 
