@@ -3,7 +3,7 @@ package main
 import "testing"
 
 var solutions = map[string]func([]int) []int{
-	"selection sort": selectionSort,
+	"selection sort": selectionSort, "quick sort": quickSort,
 }
 
 func TestSolve(t *testing.T) {

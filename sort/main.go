@@ -20,3 +20,22 @@ func selectionSort(items []int) []int {
 
 	return sorteds
 }
+
+func quickSort(items []int) []int {
+	if len(items) < 2 {
+		return items
+	}
+
+	pivot, rests := items[0], items[1:]
+	less, greater := make([]int, 0, len(items)), make([]int, 0, len(rests))
+	for _, item := range rests {
+		if item <= pivot {
+			less = append(less, item)
+		} else {
+			greater = append(greater, item)
+		}
+	}
+	less, greater = append(quickSort(less), pivot), quickSort(greater)
+
+	return append(less, greater...)
+}
