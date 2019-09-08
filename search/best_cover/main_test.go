@@ -35,9 +35,9 @@ func TestSolve(t *testing.T) {
 		},
 	}
 
-	for _, test := range tests {
-		for name, s := range solutions {
-			t.Run(name, func(t *testing.T) {
+	for name, s := range solutions {
+		t.Run(name, func(t *testing.T) {
+			for _, test := range tests {
 				actual := s(test.input.nodes, test.input.needed)
 				if len(actual) != len(test.expected) {
 					t.Fatalf("unexpected length: got %d, expected %d\n", len(actual), len(test.expected))
@@ -48,21 +48,23 @@ func TestSolve(t *testing.T) {
 						algorithm.Reportln(t, "best cover", actual[i], expected)
 					}
 				}
-			})
-		}
+			}
+		})
 	}
 }
 
 func BenchmarkSolve(b *testing.B) {
 	for name, s := range solutions {
 		b.Run(name, func(b *testing.B) {
-			s(map[string][]string{
-				"k1": []string{"id", "nv", "ut"},
-				"k2": []string{"wa", "id", "mt"},
-				"k3": []string{"or", "nv", "ca"},
-				"k4": []string{"nv", "ut"},
-				"k5": []string{"ca", "az"},
-			}, []string{"mt", "wa", "or", "id", "nv", "ut", "ca", "az"})
+			for i := 0; i < b.N; i++ {
+				s(map[string][]string{
+					"k1": []string{"id", "nv", "ut"},
+					"k2": []string{"wa", "id", "mt"},
+					"k3": []string{"or", "nv", "ca"},
+					"k4": []string{"nv", "ut"},
+					"k5": []string{"ca", "az"},
+				}, []string{"mt", "wa", "or", "id", "nv", "ut", "ca", "az"})
+			}
 		})
 	}
 }
