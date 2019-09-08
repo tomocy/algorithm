@@ -2,7 +2,9 @@ package main
 
 import "testing"
 
-var solutions = map[string]func([]string, string) string{}
+var solutions = map[string]func([]string, string) string{
+	"dynamic": dynamic,
+}
 
 func TestSolve(t *testing.T) {
 	type input struct {
