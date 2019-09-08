@@ -5,7 +5,9 @@ import (
 	"testing"
 )
 
-var solutions = map[string]func(map[string][]string, []string) []string{}
+var solutions = map[string]func(map[string][]string, []string) []string{
+	"greedy": greedy,
+}
 
 func TestSolve(t *testing.T) {
 	type input struct {
