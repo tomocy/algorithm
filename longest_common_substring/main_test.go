@@ -28,22 +28,24 @@ func TestSolve(t *testing.T) {
 		},
 	}
 
-	for _, test := range tests {
-		for name, s := range solutions {
-			t.Run(name, func(t *testing.T) {
+	for name, s := range solutions {
+		t.Run(name, func(t *testing.T) {
+			for _, test := range tests {
 				actual := s(test.input.items, test.input.name)
 				if actual != test.expected {
 					algorithm.Reportln(t, "longest common substring", actual, test.expected)
 				}
-			})
-		}
+			}
+		})
 	}
 }
 
 func BenchmarkSolve(b *testing.B) {
 	for name, s := range solutions {
 		b.Run(name, func(b *testing.B) {
-			s([]string{"fish", "vista"}, "hish")
+			for i := 0; i < b.N; i++ {
+				s([]string{"fish", "vista"}, "hish")
+			}
 		})
 	}
 }
