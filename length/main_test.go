@@ -2,7 +2,9 @@ package main
 
 import "testing"
 
-var solutions = map[string]func([]interface{}) int{}
+var solutions = map[string]func([]interface{}) int{
+	"builtin": builtin,
+}
 
 func TestSolve(t *testing.T) {
 	tests := []struct {

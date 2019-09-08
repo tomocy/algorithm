@@ -2,4 +2,6 @@ package main
 
 func main() {}
 
-func solve() {}
+func builtin(items []interface{}) int {
+	return len(items)
+}
