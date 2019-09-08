@@ -11,10 +11,10 @@ func simple(vs []int) int {
 	return sum
 }
 
-func solve2(vs []int) int {
-	if len(vs) <= 0 {
+func recursive(vs []int) int {
+	if len(vs) < 1 {
 		return 0
 	}
 
-	return vs[0] + solve2(vs[1:])
+	return vs[0] + recursive(vs[1:])
 }

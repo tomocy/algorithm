@@ -5,7 +5,7 @@ import (
 )
 
 var solutions = map[string]func([]int) int{
-	"simple": simple, "solve2": solve2,
+	"simple": simple, "recursive": recursive,
 }
 
 func TestSolve(t *testing.T) {
