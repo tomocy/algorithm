@@ -6,12 +6,12 @@ func builtin(vs []int) int {
 	return len(vs)
 }
 
-func solve2(vs []int) (l int) {
+func recursive(vs []int) (l int) {
 	defer func() {
 		if err := recover(); err != nil {
 			l = 0
 		}
 	}()
 
-	return 1 + solve2(vs[1:])
+	return 1 + recursive(vs[1:])
 }
