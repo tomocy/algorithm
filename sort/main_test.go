@@ -2,7 +2,9 @@ package main
 
 import "testing"
 
-var solutions = map[string]func([]int) []int{}
+var solutions = map[string]func([]int) []int{
+	"selection sort": selectionSort,
+}
 
 func TestSolve(t *testing.T) {
 	tests := []struct {
