@@ -5,7 +5,9 @@ import (
 	"testing"
 )
 
-var solutions = map[string]func(map[string]*trip, float64) []string{}
+var solutions = map[string]func(map[string]*trip, float64) []string{
+	"dynamic": dynamic,
+}
 
 func TestSolve(t *testing.T) {
 	type input struct {
