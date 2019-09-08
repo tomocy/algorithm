@@ -20,24 +20,24 @@ func TestSolve(t *testing.T) {
 		{input{[]int{}, 0}, false},
 	}
 
-	for _, test := range tests {
-		for name, s := range solutions {
-			t.Run(name, func(t *testing.T) {
+	for name, s := range solutions {
+		t.Run(name, func(t *testing.T) {
+			for _, test := range tests {
 				actual := s(test.input.items, test.input.target)
 				if actual != test.expected {
 					t.Errorf("got %t, expect %t\n", actual, test.expected)
 				}
-			})
-		}
+			}
+		})
 	}
 }
 
 func BenchmarkSolve(b *testing.B) {
 	for name, s := range solutions {
-		for i := 0; i < b.N; i++ {
-			b.Run(name, func(b *testing.B) {
+		b.Run(name, func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
 				s([]int{3, 4, 1, 6, 7, 9, 0}, 7)
-			})
-		}
+			}
+		})
 	}
 }
