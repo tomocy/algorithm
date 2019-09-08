@@ -3,7 +3,7 @@ package main
 import "testing"
 
 var solutions = map[string]func([]int, int) bool{
-	"simple search": simpleSearch,
+	"simple search": simpleSearch, "binary search": binarySearch,
 }
 
 func TestSolve(t *testing.T) {
