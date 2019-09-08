@@ -10,3 +10,11 @@ func simple(items []int) int {
 
 	return sum
 }
+
+func recursive(items []int) int {
+	if len(items) < 1 {
+		return 0
+	}
+
+	return items[0] + recursive(items[1:])
+}

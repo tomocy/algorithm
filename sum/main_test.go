@@ -3,7 +3,7 @@ package main
 import "testing"
 
 var solutions = map[string]func([]int) int{
-	"simple": simple,
+	"simple": simple, "recursive": recursive,
 }
 
 func TestSolve(t *testing.T) {
