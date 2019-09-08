@@ -2,7 +2,9 @@ package main
 
 import "testing"
 
-var solutions = map[string]func([]int, int) bool{}
+var solutions = map[string]func([]int, int) bool{
+	"simple search": simpleSearch,
+}
 
 func TestSolve(t *testing.T) {
 	type input struct {
