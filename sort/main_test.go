@@ -10,7 +10,9 @@ func TestSolve(t *testing.T) {
 	tests := []struct {
 		inputs, expecteds []int
 	}{
-		{[]int{3, 4, 2, 4, 6, 0, 1, -3, -8}, []int{-8, -3, 0, 1, 2, 3, 4, 4, 6}},
+		{[]int{2, 7, 2, 3, 0, 9, -1, 0}, []int{-1, 0, 0, 2, 2, 3, 7, 9}},
+		{[]int{2, 1}, []int{1, 2}},
+		{[]int{}, []int{}},
 	}
 
 	for name, s := range solutions {
@@ -18,11 +20,11 @@ func TestSolve(t *testing.T) {
 			for _, test := range tests {
 				actuals := s(test.inputs)
 				if len(actuals) != len(test.expecteds) {
-					t.Fatalf("unexpected length: got %d, expected %d\n", len(actuals), len(test.expecteds))
+					t.Fatalf("unexpected length: got %d, expect %d\n", len(actuals), len(test.expecteds))
 				}
 				for i, expected := range test.expecteds {
 					if actuals[i] != expected {
-						t.Errorf("got %d, expected %d\n", actuals[i], expected)
+						t.Errorf("got %d, expect %d\n", actuals[i], expected)
 					}
 				}
 			}
@@ -34,7 +36,7 @@ func BenchmarkSolve(b *testing.B) {
 	for name, s := range solutions {
 		b.Run(name, func(b *testing.B) {
 			for i := 0; i < b.N; i++ {
-				s([]int{3, 4, 2, 4, 6, 0, 1, -3, -8})
+				s([]int{2, 7, 2, 3, 0, 9, -1, 0})
 			}
 		})
 	}

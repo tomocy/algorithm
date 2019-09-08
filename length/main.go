@@ -2,16 +2,16 @@ package main
 
 func main() {}
 
-func builtin(vs []int) int {
-	return len(vs)
+func builtin(items []interface{}) int {
+	return len(items)
 }
 
-func recursive(vs []int) (l int) {
+func recursive(items []interface{}) (l int) {
 	defer func() {
 		if err := recover(); err != nil {
 			l = 0
 		}
 	}()
 
-	return 1 + recursive(vs[1:])
+	return 1 + recursive(items[1:])
 }

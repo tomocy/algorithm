@@ -1,29 +1,26 @@
 package main
 
-import (
-	"testing"
+import "testing"
 
-	"github.com/tomocy/algorithm"
-)
-
-var solutions = map[string]func([]int) int{
+var solutions = map[string]func([]interface{}) int{
 	"builtin": builtin, "recursive": recursive,
 }
 
 func TestSolve(t *testing.T) {
 	tests := []struct {
-		input    []int
+		inputs   []interface{}
 		expected int
 	}{
-		{make([]int, 5), 5},
+		{[]interface{}{1, "1", true}, 3},
+		{[]interface{}{}, 0},
 	}
 
 	for name, s := range solutions {
 		t.Run(name, func(t *testing.T) {
 			for _, test := range tests {
-				actual := s(test.input)
+				actual := s(test.inputs)
 				if actual != test.expected {
-					algorithm.Reportln(t, "length", actual, test.expected)
+					t.Errorf("got %d, expect %d\n", actual, test.expected)
 				}
 			}
 		})
@@ -34,7 +31,7 @@ func BenchmarkSolve(b *testing.B) {
 	for name, s := range solutions {
 		b.Run(name, func(b *testing.B) {
 			for i := 0; i < b.N; i++ {
-				s([]int{1, 2, 3, 4, 5})
+				s([]interface{}{1, "1", true})
 			}
 		})
 	}

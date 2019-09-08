@@ -1,8 +1,6 @@
 package main
 
-import (
-	"sort"
-)
+import "sort"
 
 func main() {}
 
@@ -21,11 +19,11 @@ func binarySearch(items []int, target int) bool {
 	begin, end := 0, len(items)-1
 	for begin <= end {
 		mid := (begin + end) / 2
-		x := items[mid]
-		if x == target {
+		guessed := items[mid]
+		if guessed == target {
 			return true
 		}
-		if target < x {
+		if target < guessed {
 			end = mid - 1
 		} else {
 			begin = mid + 1

@@ -15,8 +15,8 @@ func TestSolve(t *testing.T) {
 		input    input
 		expected bool
 	}{
-		{input{[]int{3, 4, 1, 6, 7, 9, 0}, 7}, true},
-		{input{[]int{3, 4, 1, 6, 7, 9, 0}, -1}, false},
+		{input{[]int{2, 7, 2, 3, 0, 9, -1, 0}, 7}, true},
+		{input{[]int{2, 7, 2, 3, 0, 9, -1, 0}, -7}, false},
 		{input{[]int{}, 0}, false},
 	}
 
@@ -36,7 +36,7 @@ func BenchmarkSolve(b *testing.B) {
 	for name, s := range solutions {
 		b.Run(name, func(b *testing.B) {
 			for i := 0; i < b.N; i++ {
-				s([]int{3, 4, 1, 6, 7, 9, 0}, 7)
+				s([]int{2, 7, 2, 3, 0, 9, -1, 0}, 7)
 			}
 		})
 	}

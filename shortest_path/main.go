@@ -1,29 +1,23 @@
 package main
 
-import (
-	"strings"
-)
-
 func main() {}
 
-func breadthFirstSearch(graph map[string][]string, start string) int {
+func breadthFirstSearch(graph map[string][]string, start, finish string) int {
 	ns := parseGraph(graph)
 	q := queue{start}
 	ns[start].queued = true
-	for v := q.dequeue(); v != ""; v = q.dequeue() {
-		neighors := graph[v]
+	for val := q.dequeue(); val != ""; val = q.dequeue() {
+		neighors := graph[val]
 		for _, neighor := range neighors {
-			n := ns[neighor]
-			n.paths = ns[v].paths + 1
-			if n.isTarget() {
-				return n.paths
+			ns[neighor].distance = ns[val].distance + 1
+			if neighor == finish {
+				return ns[neighor].distance
 			}
-			if n.queued {
+			if ns[neighor].queued {
 				continue
 			}
 
-			q = append(q, neighor)
-			ns[neighor].queued = true
+			q, ns[neighor].queued = append(q, neighor), true
 		}
 	}
 
@@ -42,13 +36,9 @@ func parseGraph(graph map[string][]string) map[string]*node {
 }
 
 type node struct {
-	val    string
-	paths  int
-	queued bool
-}
-
-func (n *node) isTarget() bool {
-	return strings.HasSuffix(n.val, "m")
+	val      string
+	queued   bool
+	distance int
 }
 
 type queue []string
@@ -60,5 +50,6 @@ func (q *queue) dequeue() string {
 
 	first := (*q)[0]
 	*q = (*q)[1:]
+
 	return first
 }

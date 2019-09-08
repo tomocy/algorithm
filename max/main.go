@@ -2,33 +2,28 @@ package main
 
 func main() {}
 
-func simple(vs []int) int {
+func simple(items []int) int {
 	var max int
-	for i, v := range vs {
-		if i == 0 {
-			max = v
-			continue
-		}
-
-		if max < v {
-			max = v
+	for i, item := range items {
+		if i == 0 || max < item {
+			max = item
 		}
 	}
 
 	return max
 }
 
-func recursive(vs []int) int {
-	switch len(vs) {
+func recursive(items []int) int {
+	switch len(items) {
 	case 0:
 		return 0
 	case 1:
-		return vs[0]
+		return items[0]
 	default:
-		max := vs[0]
-		alt := recursive(vs[1:])
-		if max < alt {
-			max = alt
+		max := items[0]
+		guessed := recursive(items[1:])
+		if max < guessed {
+			max = guessed
 		}
 
 		return max

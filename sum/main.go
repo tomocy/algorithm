@@ -2,19 +2,19 @@ package main
 
 func main() {}
 
-func simple(vs []int) int {
+func simple(items []int) int {
 	var sum int
-	for _, v := range vs {
-		sum += v
+	for _, item := range items {
+		sum += item
 	}
 
 	return sum
 }
 
-func recursive(vs []int) int {
-	if len(vs) < 1 {
+func recursive(items []int) int {
+	if len(items) < 1 {
 		return 0
 	}
 
-	return vs[0] + recursive(vs[1:])
+	return items[0] + recursive(items[1:])
 }

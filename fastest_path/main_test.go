@@ -1,13 +1,9 @@
 package main
 
-import (
-	"testing"
-
-	"github.com/tomocy/algorithm"
-)
+import "testing"
 
 var solutions = map[string]func(map[string]map[string]int, string, string) int{
-	"dijkstra": dijkstra,
+	"dyikstra": dyikstra,
 }
 
 func TestSolve(t *testing.T) {
@@ -19,42 +15,11 @@ func TestSolve(t *testing.T) {
 		input    input
 		expected int
 	}{
-		{
-			input{
-				map[string]map[string]int{
-					"start": {"a": 6, "b": 2},
-					"a":     {"finish": 1},
-					"b":     {"a": 3, "finish": 5},
-				},
-				"start", "finish",
-			},
-			6,
-		},
-		{
-			input{
-				map[string]map[string]int{
-					"start": {"a": 5, "b": 2},
-					"a":     {"c": 4, "d": 2},
-					"b":     {"a": 8, "d": 7},
-					"c":     {"finish": 3, "d": 6},
-					"d":     {"finish": 1},
-				},
-				"start", "finish",
-			},
-			8,
-		},
-		{
-			input{
-				map[string]map[string]int{
-					"start": {"a": 10},
-					"a":     {"b": 20},
-					"b":     {"c": 1, "finish": 30},
-					"c":     {"a": 1},
-				},
-				"start", "finish",
-			},
-			60,
-		},
+		{input{map[string]map[string]int{
+			"a": {"b": 6, "c": 2},
+			"b": {"d": 1},
+			"c": {"b": 3, "d": 5},
+		}, "a", "d"}, 6},
 	}
 
 	for name, s := range solutions {
@@ -62,7 +27,7 @@ func TestSolve(t *testing.T) {
 			for _, test := range tests {
 				actual := s(test.input.graph, test.input.start, test.input.finish)
 				if actual != test.expected {
-					algorithm.Reportln(t, "fastest path", actual, test.expected)
+					t.Errorf("got %d, expect %d\n", actual, test.expected)
 				}
 			}
 		})
