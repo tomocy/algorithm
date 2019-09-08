@@ -18,15 +18,15 @@ func TestSolve(t *testing.T) {
 		{make([]int, 5), 5},
 	}
 
-	for _, test := range tests {
-		for name, s := range solutions {
-			t.Run(name, func(t *testing.T) {
+	for name, s := range solutions {
+		t.Run(name, func(t *testing.T) {
+			for _, test := range tests {
 				actual := s(test.input)
 				if actual != test.expected {
 					algorithm.Reportln(t, "length", actual, test.expected)
 				}
-			})
-		}
+			}
+		})
 	}
 }
 
