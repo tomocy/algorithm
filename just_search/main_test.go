@@ -34,8 +34,10 @@ func TestSolve(t *testing.T) {
 
 func BenchmarkSolve(b *testing.B) {
 	for name, s := range solutions {
-		b.Run(name, func(b *testing.B) {
-			s([]int{3, 4, 1, 6, 7, 9, 0}, 7)
-		})
+		for i := 0; i < b.N; i++ {
+			b.Run(name, func(b *testing.B) {
+				s([]int{3, 4, 1, 6, 7, 9, 0}, 7)
+			})
+		}
 	}
 }
