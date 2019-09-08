@@ -2,7 +2,9 @@ package main
 
 import "testing"
 
-var solutions = map[string]func(map[string][]string, string, string) int{}
+var solutions = map[string]func(map[string][]string, string, string) int{
+	"breadth first search": breadthFirstSearch,
+}
 
 func TestSolve(t *testing.T) {
 	type input struct {
