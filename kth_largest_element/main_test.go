@@ -2,7 +2,9 @@ package main
 
 import "testing"
 
-var solutions = map[string]func([]int, int) int{}
+var solutions = map[string]func([]int, int) int{
+	"with quick sort": withQuickSort,
+}
 
 func TestSolve(t *testing.T) {
 	type input struct {
@@ -13,7 +15,7 @@ func TestSolve(t *testing.T) {
 		input    input
 		expected int
 	}{
-		{input{[]int{4, 5, 8, 2}, 3}, 5},
+		{input{[]int{4, 5, 8, 2}, 3}, 4},
 		{input{[]int{4, 5, 8, 2, 3}, 3}, 4},
 		{input{[]int{4, 5, 8, 2, 3, 5}, 3}, 5},
 	}
