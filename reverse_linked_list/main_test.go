@@ -5,7 +5,9 @@ import (
 	"testing"
 )
 
-var solutions = map[string]func(head *node) *node{}
+var solutions = map[string]func(head *node) *node{
+	"simple": simple,
+}
 
 func TestSolve(t *testing.T) {
 	tests := []struct {
