@@ -2,14 +2,16 @@ package main
 
 import "testing"
 
-var solutions = map[string]func(string) bool{}
+var solutions = map[string]func(string) bool{
+	"simple": simple,
+}
 
 func TestSolve(t *testing.T) {
 	tests := []struct {
 		input    string
 		expected bool
 	}{
-		{"()", true}, {"()[]{}", true}, {"([)]", false}, {"{[]}", true},
+		{"()", true}, {"()[]{}", true}, {"([)]", false}, {"{[]}", true}, {"", true}, {"({", false}, {"(", false}, {"}", false},
 	}
 
 	for name, s := range solutions {
