@@ -22,7 +22,7 @@ func TestSolve(t *testing.T) {
 			for _, test := range tests {
 				actual := s(test.input)
 				if err := assertNode(actual, test.expected); err != nil {
-					t.Errorf("unexpected node: %s\n", err)
+					t.Errorf("%s\n", err)
 				}
 			}
 		})
