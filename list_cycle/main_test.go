@@ -2,7 +2,9 @@ package main
 
 import "testing"
 
-var solutions = map[string]func(head *node) bool{}
+var solutions = map[string]func(head *node) bool{
+	"two pointers": twoPointers,
+}
 
 func TestSolve(t *testing.T) {
 	tests := []struct {
@@ -14,6 +16,14 @@ func TestSolve(t *testing.T) {
 			a.next, b.next, c.next, d.next = b, c, d, b
 			return a
 		}, true},
+		{func() *node {
+			a, b := &node{val: 1}, &node{val: 2}
+			a.next, b.next = b, a
+			return a
+		}, true},
+		{func() *node {
+			return &node{val: 1}
+		}, false},
 	}
 
 	for name, s := range solutions {
