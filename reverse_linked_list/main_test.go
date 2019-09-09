@@ -6,20 +6,23 @@ import (
 )
 
 var solutions = map[string]func(head *node) *node{
-	"simple": simple,
+	"simple": simple, "with stack": withStack,
 }
 
 func TestSolve(t *testing.T) {
 	tests := []struct {
-		input, expected *node
+		input    func() *node
+		expected *node
 	}{
-		{&node{1, &node{2, &node{3, &node{4, &node{5, nil}}}}}, &node{5, &node{4, &node{3, &node{2, &node{1, nil}}}}}},
+		{func() *node {
+			return &node{1, &node{2, &node{3, &node{4, &node{5, nil}}}}}
+		}, &node{5, &node{4, &node{3, &node{2, &node{1, nil}}}}}},
 	}
 
 	for name, s := range solutions {
 		t.Run(name, func(t *testing.T) {
 			for _, test := range tests {
-				actual := s(test.input)
+				actual := s(test.input())
 				if err := assertNode(actual, test.expected); err != nil {
 					t.Errorf("%s\n", err)
 				}
