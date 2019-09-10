@@ -1,9 +1,11 @@
 package main
 
-import "testing"
+import (
+	"testing"
+)
 
 var solutions = map[string]func([]int, int) int{
-	"with quick sort": withQuickSort,
+	"with quick sort": withQuickSort, "with heap": withHeap,
 }
 
 func TestSolve(t *testing.T) {
@@ -18,6 +20,9 @@ func TestSolve(t *testing.T) {
 		{input{[]int{4, 5, 8, 2}, 3}, 4},
 		{input{[]int{4, 5, 8, 2, 3}, 3}, 4},
 		{input{[]int{4, 5, 8, 2, 3, 5}, 3}, 5},
+		{input{[]int{4, 5, 8, 2, 3, 5, 10}, 3}, 5},
+		{input{[]int{4, 5, 8, 2, 3, 5, 10, 9}, 3}, 8},
+		{input{[]int{4, 5, 8, 2, 3, 5, 10, 9, 4}, 3}, 8},
 	}
 
 	for name, s := range solutions {
@@ -25,6 +30,7 @@ func TestSolve(t *testing.T) {
 			for _, test := range tests {
 				actual := s(test.input.ns, test.input.k)
 				if actual != test.expected {
+					t.Log(test.input.ns)
 					t.Errorf("got %d, expect %d", actual, test.expected)
 				}
 			}
