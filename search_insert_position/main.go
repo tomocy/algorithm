@@ -4,6 +4,10 @@ func main() {}
 
 func binarySearch(vs []int, x int) int {
 	begin, end := 0, len(vs)-1
+	if vs[end] < x {
+		return end + 1
+	}
+
 	for begin <= end {
 		mid := (begin + end) / 2
 		if vs[mid] == x {
@@ -16,14 +20,5 @@ func binarySearch(vs []int, x int) int {
 		}
 	}
 
-	lastI := -1
-	for i, v := range vs {
-		if x < v {
-			break
-		}
-
-		lastI = i
-	}
-
-	return lastI + 1
+	return begin
 }
