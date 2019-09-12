@@ -1,5 +1,7 @@
 package main
 
+import "sort"
+
 func main() {}
 
 func greedy(covers map[string][]string, neededs []string) []string {
@@ -8,10 +10,12 @@ func greedy(covers map[string][]string, neededs []string) []string {
 	for 0 < len(neededSet) {
 		var best string
 		var bestSet set
-		for cover, covereds := range covers {
+		names := sortedNames(covers)
+		for _, name := range names {
+			covereds := covers[name]
 			guesseds := neededSet.intersect(newSet(covereds))
 			if len(bestSet) < len(guesseds) {
-				best, bestSet = cover, guesseds
+				best, bestSet = name, guesseds
 			}
 		}
 
@@ -19,6 +23,19 @@ func greedy(covers map[string][]string, neededs []string) []string {
 	}
 
 	return bests
+}
+
+func sortedNames(cs map[string][]string) []string {
+	ns := make([]string, len(cs))
+	var i int
+	for c := range cs {
+		ns[i] = c
+		i++
+	}
+
+	sort.Strings(ns)
+
+	return ns
 }
 
 func newSet(ss []string) set {
