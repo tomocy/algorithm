@@ -2,7 +2,9 @@ package main
 
 import "testing"
 
-var solutions = map[string]func([]int, int) int{}
+var solutions = map[string]func([]int, int) int{
+	"simple": simple,
+}
 
 func TestSolve(t *testing.T) {
 	type input struct {
