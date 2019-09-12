@@ -3,7 +3,7 @@ package main
 import "testing"
 
 var solutions = map[string]func([]int, int) int{
-	"simple": simple,
+	"simple": simple, "binary search": binarySearch,
 }
 
 func TestSolve(t *testing.T) {
@@ -16,9 +16,11 @@ func TestSolve(t *testing.T) {
 		expected int
 	}{
 		{input{[]int{4}, 4}, 0},
+		{input{[]int{1, 3}, 3}, 1},
 		{input{[]int{4, 5}, 3}, -1},
 		{input{[]int{4, 5, 6, 7, 0, 1, 2}, 0}, 4},
 		{input{[]int{4, 5, 6, 7, 0, 1, 2}, 3}, -1},
+		{input{[]int{4, 5, 6, 7, 8, 1, 2, 3}, 8}, 4},
 	}
 
 	for name, s := range solutions {
@@ -26,6 +28,7 @@ func TestSolve(t *testing.T) {
 			for _, test := range tests {
 				actual := s(test.input.vs, test.input.x)
 				if actual != test.expected {
+					t.Log(test.input.vs, test.input.x)
 					t.Errorf("got %d, expect %d\n", actual, test.expected)
 				}
 			}
