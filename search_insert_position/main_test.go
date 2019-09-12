@@ -2,7 +2,9 @@ package main
 
 import "testing"
 
-var solutions = map[string]func([]int, int) int{}
+var solutions = map[string]func([]int, int) int{
+	"binary search": binarySearch,
+}
 
 func TestSolve(t *testing.T) {
 	type input struct {
@@ -14,6 +16,9 @@ func TestSolve(t *testing.T) {
 		expected int
 	}{
 		{input{[]int{1, 3, 5, 6}, 5}, 2},
+		{input{[]int{1, 3, 5, 6}, 2}, 1},
+		{input{[]int{1, 3, 5, 6}, 7}, 4},
+		{input{[]int{1, 3, 5, 6}, 0}, 0},
 	}
 
 	for name, s := range solutions {
