@@ -3,7 +3,7 @@ package main
 import "testing"
 
 var solutions = map[string]func([]int) int{
-	"simple": simple,
+	"simple": simple, "binary search": binarySearch,
 }
 
 func TestSolve(t *testing.T) {
@@ -11,6 +11,7 @@ func TestSolve(t *testing.T) {
 		input    []int
 		expected int
 	}{
+		{[]int{2, 1}, 1},
 		{[]int{1, 2, 3, 4, 5}, 1},
 		{[]int{3, 4, 5, 1, 2}, 1},
 		{[]int{4, 5, 6, 7, 0, 1, 2}, 0},
