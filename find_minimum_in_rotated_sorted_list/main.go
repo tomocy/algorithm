@@ -3,14 +3,13 @@ package main
 func main() {}
 
 func simple(vs []int) int {
-	if len(vs) < 1 {
-		return 0
-	}
-	lastV := vs[0]
-	for _, v := range vs[1:] {
-		if v < lastV {
+	var lastV int
+	for i, v := range vs {
+		if i != 0 && v < lastV {
 			return v
 		}
+
+		lastV = v
 	}
 
 	return vs[0]
@@ -21,19 +20,21 @@ func binarySearch(vs []int) int {
 	if vs[begin] < vs[end] {
 		return vs[begin]
 	}
+
 	for begin <= end {
 		mid := (begin + end) / 2
 		left, right := mid-1, mid+1
-		if left < 0 {
+
+		if left < begin {
 			min := vs[mid]
-			if right < len(vs) && vs[right] < min {
+			if right <= end && vs[right] < min {
 				min = vs[right]
 			}
 			return min
 		}
-		if len(vs) <= right {
+		if end < right {
 			min := vs[mid]
-			if 0 <= left && vs[left] < min {
+			if begin <= left && vs[left] < min {
 				min = vs[left]
 			}
 			return min
@@ -46,7 +47,7 @@ func binarySearch(vs []int) int {
 			return vs[right]
 		}
 
-		if vs[0] < vs[mid] {
+		if vs[begin] <= vs[mid] {
 			begin = mid + 1
 		} else {
 			end = mid - 1
