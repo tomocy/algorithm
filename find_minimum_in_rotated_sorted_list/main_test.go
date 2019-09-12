@@ -2,13 +2,16 @@ package main
 
 import "testing"
 
-var solutions = map[string]func([]int) int{}
+var solutions = map[string]func([]int) int{
+	"simple": simple,
+}
 
 func TestSolve(t *testing.T) {
 	tests := []struct {
 		input    []int
 		expected int
 	}{
+		{[]int{1, 2, 3, 4, 5}, 1},
 		{[]int{3, 4, 5, 1, 2}, 1},
 		{[]int{4, 5, 6, 7, 0, 1, 2}, 0},
 	}
