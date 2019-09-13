@@ -2,7 +2,9 @@ package main
 
 import "testing"
 
-var solutions = map[string]func([]int, int) int{}
+var solutions = map[string]func([]int, int) int{
+	"binary search": binarySearch,
+}
 
 func TestSolve(t *testing.T) {
 	type input struct {
@@ -21,7 +23,7 @@ func TestSolve(t *testing.T) {
 	for name, s := range solutions {
 		t.Run(name, func(t *testing.T) {
 			for _, test := range tests {
-				actual := s(test.input.ws, test.input.d)
+				actual := s(test.input.ps, test.input.d)
 				if actual != test.expected {
 					t.Errorf("got %d, expect %d\n", actual, test.expected)
 				}
