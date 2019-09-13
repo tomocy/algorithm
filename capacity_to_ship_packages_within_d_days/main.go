@@ -10,7 +10,6 @@ func binarySearch(ps []int, d int) int {
 				max = v
 			}
 		}
-
 		return max
 	}
 	sum := func(vs []int) int {
@@ -18,7 +17,6 @@ func binarySearch(ps []int, d int) int {
 		for _, v := range vs {
 			sum += v
 		}
-
 		return sum
 	}
 
