@@ -6,7 +6,7 @@ var solutions = map[string]func([]int, int) int{}
 
 func TestSolve(t *testing.T) {
 	type input struct {
-		ws []int
+		ps []int
 		d  int
 	}
 	tests := []struct {
