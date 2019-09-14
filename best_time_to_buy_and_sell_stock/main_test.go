@@ -3,7 +3,7 @@ package main
 import "testing"
 
 var solutions = map[string]func([]int) int{
-	"dynamic": dynamic,
+	"dynamic": dynamic, "max from min": maxFromMin,
 }
 
 func TestSolve(t *testing.T) {
