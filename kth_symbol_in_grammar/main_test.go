@@ -25,7 +25,6 @@ func TestSolve(t *testing.T) {
 			for _, test := range tests {
 				actual := s(test.input.n, test.input.k)
 				if actual != test.expected {
-					t.Log(test.input.n, test.input.k)
 					t.Errorf("got %d, expect %d", actual, test.expected)
 				}
 			}
