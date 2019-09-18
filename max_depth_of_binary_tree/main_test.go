@@ -1,8 +1,12 @@
 package main
 
-import "testing"
+import (
+	"testing"
+)
 
-var solutions = map[string]func(*node) int{}
+var solutions = map[string]func(*node) int{
+	"recursive": recursive,
+}
 
 func TestSolve(t *testing.T) {
 	tests := []struct {
@@ -12,6 +16,14 @@ func TestSolve(t *testing.T) {
 		{
 			input:    &node{val: 3, left: &node{val: 9}, right: &node{val: 20, left: &node{val: 15}, right: &node{val: 7}}},
 			expected: 3,
+		},
+		{
+			input:    &node{val: 3, left: &node{val: 9}, right: &node{val: 20, left: &node{val: 15}, right: &node{val: 7, left: &node{val: 9}}}},
+			expected: 4,
+		},
+		{
+			input:    &node{val: 1, left: &node{val: 2}},
+			expected: 2,
 		},
 	}
 
