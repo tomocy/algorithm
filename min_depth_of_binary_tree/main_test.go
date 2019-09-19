@@ -2,7 +2,9 @@ package main
 
 import "testing"
 
-var solutions = map[string]func(*node) int{}
+var solutions = map[string]func(*node) int{
+	"recursive": recursive,
+}
 
 func TestSolve(t *testing.T) {
 	tests := []struct {
@@ -10,15 +12,23 @@ func TestSolve(t *testing.T) {
 		expected int
 	}{
 		{
-			input:    &node{val: 3, left: &node{val: 9}, right: &node{val: 20, left: &node{val: 15}, right: &node{val: 7}}},
+			input:    &node{val: 1},
+			expected: 1,
+		},
+		{
+			input:    &node{val: 1, left: &node{val: 2}, right: &node{val: 2, left: &node{val: 3}, right: &node{val: 3}}},
 			expected: 2,
 		},
 		{
 			input:    &node{val: 1, left: &node{val: 2}, right: &node{val: 2, left: &node{val: 3}}},
-			expected: 3,
+			expected: 2,
 		},
 		{
 			input:    &node{val: 1, left: &node{val: 2, right: &node{val: 3}}, right: &node{val: 2, left: &node{val: 3}}},
+			expected: 3,
+		},
+		{
+			input:    &node{val: 1, left: &node{val: 2, right: &node{val: 3, left: &node{val: 4, right: &node{val: 5}}}}, right: &node{val: 2, left: &node{val: 3}}},
 			expected: 3,
 		},
 	}
