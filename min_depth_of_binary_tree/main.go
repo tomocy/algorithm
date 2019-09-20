@@ -14,10 +14,10 @@ func recursive(root *node) int {
 			min = guessed
 		}
 		return min
-	case root.left != nil && root.right == nil:
-		return 1 + recursive(root.left)
 	case root.left == nil && root.right != nil:
 		return 1 + recursive(root.right)
+	case root.left != nil && root.right == nil:
+		return 1 + recursive(root.left)
 	default:
 		return 1
 	}
